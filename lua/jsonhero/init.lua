@@ -66,6 +66,7 @@ local function open_json_hero_in_browser(base_64_text)
   -- })
 
   -- This causes weird behavior with nvim when I run this
+  -- This will also crash my browser completely... Don't have the repeatable steps yet, but I believe it crashes my browser because os.execute is blocking and when I close the browser window for jsonhero it causes some weird behavior
   os.execute(command)
 end
 
