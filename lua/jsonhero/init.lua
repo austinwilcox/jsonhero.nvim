@@ -59,8 +59,7 @@ local function open_json_hero_in_browser(base_64_text)
     return
   end
 
-  -- Execute the command
-  os.execute(command)
+  vim.fn.jobstart(command, {})
 end
 
 local function json_hero()
