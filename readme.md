@@ -1,0 +1,1 @@
+# JsonHero.nvim
