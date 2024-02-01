@@ -1,6 +1,12 @@
+local M = {}
+
 local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/" -- You will need this for encoding/decoding
--- encoding
-function to_base_64(data)
+
+---Convert string to base64
+---
+---@param data string "{'hello': 'world'}"
+---@return string
+local function to_base_64(data)
   return (
     (data:gsub(".", function(x)
       local r, b = "", x:byte()
@@ -21,7 +27,10 @@ function to_base_64(data)
   )
 end
 
-function get_visual_selection()
+---Get visually selected text
+---
+---@return string
+local function get_visual_selection()
   local saved_selection = vim.fn.getpos("'<")
   local start_line = saved_selection[2]
   local end_line = vim.fn.getpos("'>")[2]
@@ -30,7 +39,13 @@ function get_visual_selection()
   return lines_str
 end
 
-function open_browser(url)
+---Open the browser window
+---
+---@param base_64_text string "base64 text"
+---@return string | nil
+local function open_json_hero_in_browser(base_64_text)
+  local base_url = "https://jsonhero.io/new?j="
+  local url = base_url .. base_64_text
   -- Command to open URL based on OS
   local command = ""
   if vim.fn.has("win32") == 1 then
@@ -48,6 +63,14 @@ function open_browser(url)
   os.execute(command)
 end
 
-get_visual_selection()
+local function json_hero()
+  open_json_hero_in_browser(to_base_64(get_visual_selection()))
+end
 
--- open_browser("https://jsonhero.io/new?j=" .. to_base_64(get_visual_selection()))
+--Setup the plugin
+function M.setup()
+  vim.api.nvim_create_user_command("jsonhero", json_hero(), {})
+end
+
+-- open_browser("" .. to_base_64(get_visual_selection()))
+return M
