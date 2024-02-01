@@ -69,7 +69,7 @@ end
 
 --Setup the plugin
 function M.setup()
-  vim.api.nvim_create_user_command("Jsonhero", json_hero, {})
+  vim.api.nvim_create_user_command("Jsonhero", json_hero, { nargs = 0 })
 end
 
 -- open_browser("" .. to_base_64(get_visual_selection()))
