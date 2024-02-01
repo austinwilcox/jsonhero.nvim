@@ -1,6 +1,6 @@
 # JsonHero.nvim
 
-This plugin is intended to open visually selected json text from nvim in a new browser window in Json Hero. You can trigger the plugin by highlighting text, entering command mode, and then typing ```Jsonhero```.
+This plugin is intended to open visually selected json text from neovim in a new browser window in Json Hero. You can trigger the plugin by highlighting text, entering command mode, and then typing ```Jsonhero```.
 
 ![](./demonstration.gif)
 
