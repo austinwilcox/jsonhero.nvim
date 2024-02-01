@@ -59,7 +59,10 @@ local function open_json_hero_in_browser(base_64_text)
     return
   end
 
-  vim.fn.jobstart(command, {})
+  vim.fn.jobstart(command, {
+    on_exit = function(_,_,_)
+    end
+  })
 end
 
 local function json_hero()
@@ -71,5 +74,4 @@ function M.setup()
   vim.api.nvim_create_user_command("Jsonhero", json_hero, { range = 1 })
 end
 
--- open_browser("" .. to_base_64(get_visual_selection()))
 return M
