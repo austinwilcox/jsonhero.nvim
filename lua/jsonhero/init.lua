@@ -59,10 +59,14 @@ local function open_json_hero_in_browser(base_64_text)
     return
   end
 
-  vim.fn.jobstart(command, {
-    on_exit = function(_,_,_)
-    end
-  })
+  -- This is crashing my browser.... Need to see what is going on here with this command
+  -- vim.fn.jobstart(command, {
+  --   on_exit = function(_,_,_)
+  --   end
+  -- })
+
+  -- This causes weird behavior with nvim when I run this
+  os.execute(command)
 end
 
 local function json_hero()
